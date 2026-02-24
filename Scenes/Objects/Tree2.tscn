@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://xnndcfnl430x"]
+
+[ext_resource type="ArrayMesh" uid="uid://haau4x0wpb4u" path="res://Assets/Models/tree_model/tree.obj" id="1_fsjij"]
+
+[node name="Tree2" type="StaticBody3D" unique_id=245303841]
+
+[node name="Tree" type="MeshInstance3D" parent="." unique_id=637637797]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
+mesh = ExtResource("1_fsjij")

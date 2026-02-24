@@ -1,0 +1,214 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.cs" id="1_mnu"]
+
+[sub_resource type="StyleBoxFlat" id="SBF_panel"]
+bg_color = Color(0.05, 0.05, 0.14, 0.97)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.85, 1, 0.8)
+content_margin_left = 32.0
+content_margin_top = 36.0
+content_margin_right = 32.0
+content_margin_bottom = 36.0
+
+[sub_resource type="StyleBoxFlat" id="SBF_btn"]
+bg_color = Color(0.07, 0.07, 0.18, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.5, 0.7, 0.7)
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="SBF_btn_hov"]
+bg_color = Color(0.05, 0.28, 0.36, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.85, 1, 1)
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="SBF_btn_prs"]
+bg_color = Color(0.02, 0.16, 0.22, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.85, 1, 0.6)
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+
+[node name="MainMenu" type="Control"]
+script = ExtResource("1_mnu")
+process_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.03, 0.03, 0.10, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(440, 480)
+theme_override_styles/panel = SubResource("SBF_panel")
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/Panel"]
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+text = "VOID QUEST"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 54
+theme_override_colors/font_color = Color(0.96, 0.78, 0.12, 1)
+theme_override_colors/font_shadow_color = Color(0.5, 0.35, 0.0, 0.85)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+
+[node name="SubTitle" type="Label" parent="CenterContainer/Panel/VBox"]
+text = "Explore. Collect. Survive."
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.40, 0.50, 0.65, 1)
+
+[node name="Spacer0" type="Control" parent="CenterContainer/Panel/VBox"]
+custom_minimum_size = Vector2(0, 36)
+
+[node name="MainPanel" type="VBoxContainer" parent="CenterContainer/Panel/VBox"]
+
+[node name="PlayButton" type="Button" parent="CenterContainer/Panel/VBox/MainPanel"]
+text = "ИГРАТЬ"
+custom_minimum_size = Vector2(0, 52)
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
+
+[node name="Spacer1" type="Control" parent="CenterContainer/Panel/VBox/MainPanel"]
+custom_minimum_size = Vector2(0, 10)
+
+[node name="MultiplayerButton" type="Button" parent="CenterContainer/Panel/VBox/MainPanel"]
+text = "МУЛЬТИПЛЕЕР"
+custom_minimum_size = Vector2(0, 52)
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0, 0.85, 1, 1)
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
+
+[node name="Spacer2" type="Control" parent="CenterContainer/Panel/VBox/MainPanel"]
+custom_minimum_size = Vector2(0, 10)
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/Panel/VBox/MainPanel"]
+text = "НАСТРОЙКИ"
+custom_minimum_size = Vector2(0, 52)
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
+
+[node name="Spacer3" type="Control" parent="CenterContainer/Panel/VBox/MainPanel"]
+custom_minimum_size = Vector2(0, 10)
+
+[node name="QuitButton" type="Button" parent="CenterContainer/Panel/VBox/MainPanel"]
+text = "ВЫХОД"
+custom_minimum_size = Vector2(0, 52)
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
+
+[node name="SettingsPanel" type="VBoxContainer" parent="CenterContainer/Panel/VBox"]
+visible = false
+
+[node name="LangLabel" type="Label" parent="CenterContainer/Panel/VBox/SettingsPanel"]
+text = "ЯЗЫК / LANGUAGE"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.40, 0.50, 0.65, 1)
+
+[node name="SpacerL" type="Control" parent="CenterContainer/Panel/VBox/SettingsPanel"]
+custom_minimum_size = Vector2(0, 18)
+
+[node name="LangCenter" type="CenterContainer" parent="CenterContainer/Panel/VBox/SettingsPanel"]
+
+[node name="LangHBox" type="HBoxContainer" parent="CenterContainer/Panel/VBox/SettingsPanel/LangCenter"]
+
+[node name="LangEnBtn" type="Button" parent="CenterContainer/Panel/VBox/SettingsPanel/LangCenter/LangHBox"]
+text = "EN"
+custom_minimum_size = Vector2(120, 52)
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
+
+[node name="LangGap" type="Control" parent="CenterContainer/Panel/VBox/SettingsPanel/LangCenter/LangHBox"]
+custom_minimum_size = Vector2(14, 0)
+
+[node name="LangRuBtn" type="Button" parent="CenterContainer/Panel/VBox/SettingsPanel/LangCenter/LangHBox"]
+text = "RU"
+custom_minimum_size = Vector2(120, 52)
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.96, 0.78, 0.12, 1)
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
+
+[node name="SpacerB" type="Control" parent="CenterContainer/Panel/VBox/SettingsPanel"]
+custom_minimum_size = Vector2(0, 18)
+
+[node name="BackButton" type="Button" parent="CenterContainer/Panel/VBox/SettingsPanel"]
+text = "НАЗАД"
+custom_minimum_size = Vector2(0, 52)
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
+
+[node name="VersionLabel" type="Label" parent="."]
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26
+offset_bottom = 0
+text = "v0.1  |  WASD – move   Mouse – look   Shift – sprint   Space – jump   Esc – pause"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.28, 0.32, 0.42, 1)
+
+[connection signal="pressed" from="CenterContainer/Panel/VBox/MainPanel/PlayButton" to="." method="OnPlayPressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBox/MainPanel/MultiplayerButton" to="." method="OnMultiplayerPressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBox/MainPanel/SettingsButton" to="." method="OnSettingsPressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBox/MainPanel/QuitButton" to="." method="OnQuitPressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBox/SettingsPanel/LangCenter/LangHBox/LangEnBtn" to="." method="OnLangEnPressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBox/SettingsPanel/LangCenter/LangHBox/LangRuBtn" to="." method="OnLangRuPressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBox/SettingsPanel/BackButton" to="." method="OnBackPressed"]

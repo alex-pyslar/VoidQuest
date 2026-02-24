@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Scripts/LootItem.cs" id="1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1"]
+radius = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_1"]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="Mat_Loot"]
+albedo_color = Color(0.9, 0.8, 0.1, 1)
+emission_enabled = true
+emission = Color(0.8, 0.6, 0.0, 1)
+emission_energy_multiplier = 1.5
+
+[node name="LootItem" type="Area3D"]
+script = ExtResource("1")
+collision_layer = 2
+collision_mask = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_1")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_1")
+surface_material_override/0 = SubResource("Mat_Loot")
+
+[node name="Light" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.9, 0.2, 1)
+light_energy = 1.5
+omni_range = 3.0

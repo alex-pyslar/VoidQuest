@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbyy2kqcl5y13"]
+
+[ext_resource type="Script" path="res://Scripts/CollectibleSphere.cs" id="2_cs"]
+[ext_resource type="PackedScene" uid="uid://b7i70xncbqh1w" path="res://Scenes/Objects/Crystal.tscn" id="1_0k2bq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1"]
+radius = 0.6
+
+[node name="CollectibleSphere" type="Area3D"]
+script = ExtResource("2_cs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_1")
+
+[node name="CrystalMesh" parent="." instance=ExtResource("1_0k2bq")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="GlowLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+light_color = Color(0.8682316, 0.93140185, 0.99999994, 1)
+light_energy = 3.0
+omni_range = 5.0
+
+[node name="GlowLight2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0, 0)
+light_color = Color(0.5, 0.7, 1.0, 1)
+light_energy = 1.5
+omni_range = 3.0

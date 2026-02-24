@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b6hkqn83fskgj"]
+
+[ext_resource type="ArrayMesh" uid="uid://cltg3kn7qf2md" path="res://Assets/Models/stone_model/stone3.obj" id="1_sw300"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1"]
+radius = 0.6
+
+[node name="Stone3" type="StaticBody3D" unique_id=1087577743]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1151149773]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("SphereShape3D_1")
+
+[node name="Stone3" type="MeshInstance3D" parent="." unique_id=480685766]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = ExtResource("1_sw300")

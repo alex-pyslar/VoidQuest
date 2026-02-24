@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d1d55esi80517"]
+
+[ext_resource type="ArrayMesh" uid="uid://haau4x0wpb4u" path="res://Assets/Models/tree_model/tree.obj" id="1_7tbtv"]
+[ext_resource type="Texture2D" uid="uid://bv0uxav3nebcp" path="res://Assets/Models/tree_model/texture_tree.png" id="1_8u0sk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4l02c"]
+albedo_texture = ExtResource("1_8u0sk")
+
+[node name="Tree" type="StaticBody3D" unique_id=1500431594]
+
+[node name="Tree" type="MeshInstance3D" parent="." unique_id=1442406149]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_4l02c")
+mesh = ExtResource("1_7tbtv")

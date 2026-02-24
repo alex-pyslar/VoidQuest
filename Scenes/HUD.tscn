@@ -1,0 +1,386 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfs5hpi6yugt2"]
+
+[ext_resource type="Script" path="res://Scripts/Hud.cs" id="1_5s13k"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_5s13k")
+process_mode = 3
+
+; ── TOP-LEFT PANEL ───────────────────────────────────────────────────────────
+[node name="TopPanel" type="PanelContainer" parent="."]
+offset_left = 10
+offset_top = 10
+offset_right = 260
+offset_bottom = 130
+process_mode = 3
+
+[node name="VBox" type="VBoxContainer" parent="TopPanel"]
+
+[node name="ScoreLabel" type="Label" parent="TopPanel/VBox"]
+text = "Score: 0"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1, 0.92, 0.3, 1)
+
+[node name="LevelLabel" type="Label" parent="TopPanel/VBox"]
+text = "Lv.1  XP: 0/50"
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.5, 1, 0.5, 1)
+
+[node name="CoordsLabel" type="Label" parent="TopPanel/VBox"]
+text = "X:0  Y:0  Z:0"
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.75, 0.75, 0.75, 1)
+
+[node name="EnemyLabel" type="Label" parent="TopPanel/VBox"]
+text = "Enemies: 0"
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+
+; ── BOTTOM-LEFT: Health + Mana bars ─────────────────────────────────────────
+[node name="BarsContainer" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 14
+offset_top = -112
+offset_right = 320
+offset_bottom = -14
+
+[node name="HealthRow" type="HBoxContainer" parent="BarsContainer"]
+
+[node name="HeartLabel" type="Label" parent="BarsContainer/HealthRow"]
+text = "♥"
+custom_minimum_size = Vector2(24, 0)
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.95, 0.2, 0.2, 1)
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="BarsContainer/HealthRow"]
+custom_minimum_size = Vector2(180, 20)
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="BarsContainer/HealthRow"]
+text = "100/100"
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+vertical_alignment = 1
+
+[node name="ManaRow" type="HBoxContainer" parent="BarsContainer"]
+
+[node name="ManaIcon" type="Label" parent="BarsContainer/ManaRow"]
+text = "M"
+custom_minimum_size = Vector2(24, 0)
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.3, 0.5, 1.0, 1)
+vertical_alignment = 1
+
+[node name="ManaBar" type="ProgressBar" parent="BarsContainer/ManaRow"]
+custom_minimum_size = Vector2(180, 20)
+max_value = 100.0
+value = 100.0
+show_percentage = false
+modulate = Color(0.3, 0.6, 1.0, 1)
+
+[node name="ManaLabel" type="Label" parent="BarsContainer/ManaRow"]
+text = "100/100"
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.6, 0.8, 1, 1)
+vertical_alignment = 1
+
+; ── CROSSHAIR ────────────────────────────────────────────────────────────────
+[node name="CrosshairLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8
+offset_top = -10
+offset_right = 8
+offset_bottom = 10
+text = "+"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 1, 1, 0.85)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+; ── SPELL HOTBAR (bottom-center) ─────────────────────────────────────────────
+[node name="SpellBar" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160
+offset_top = -80
+offset_right = 160
+offset_bottom = -12
+alignment = 1
+
+[node name="Spell1Panel" type="PanelContainer" parent="SpellBar"]
+custom_minimum_size = Vector2(80, 68)
+
+[node name="VBox1" type="VBoxContainer" parent="SpellBar/Spell1Panel"]
+
+[node name="Icon1" type="Label" parent="SpellBar/Spell1Panel/VBox1"]
+text = "FIRE"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.5, 0.1, 1)
+
+[node name="Key1" type="Label" parent="SpellBar/Spell1Panel/VBox1"]
+text = "[Q]"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1, 0.6, 0.2, 1)
+
+[node name="Cost1" type="Label" parent="SpellBar/Spell1Panel/VBox1"]
+text = "20 MP"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.6, 0.8, 1, 0.9)
+
+[node name="Spell2Panel" type="PanelContainer" parent="SpellBar"]
+custom_minimum_size = Vector2(80, 68)
+
+[node name="VBox2" type="VBoxContainer" parent="SpellBar/Spell2Panel"]
+
+[node name="Icon2" type="Label" parent="SpellBar/Spell2Panel/VBox2"]
+text = "HEAL"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+
+[node name="Key2" type="Label" parent="SpellBar/Spell2Panel/VBox2"]
+text = "[E]"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+
+[node name="Cost2" type="Label" parent="SpellBar/Spell2Panel/VBox2"]
+text = "30 MP"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.6, 0.8, 1, 0.9)
+
+[node name="Spell3Panel" type="PanelContainer" parent="SpellBar"]
+custom_minimum_size = Vector2(80, 68)
+
+[node name="VBox3" type="VBoxContainer" parent="SpellBar/Spell3Panel"]
+
+[node name="Icon3" type="Label" parent="SpellBar/Spell3Panel/VBox3"]
+text = "FROST"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.5, 0.8, 1, 1)
+
+[node name="Key3" type="Label" parent="SpellBar/Spell3Panel/VBox3"]
+text = "[R]"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.5, 0.8, 1, 1)
+
+[node name="Cost3" type="Label" parent="SpellBar/Spell3Panel/VBox3"]
+text = "40 MP"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.6, 0.8, 1, 0.9)
+
+; ── ATTACK HINT ──────────────────────────────────────────────────────────────
+[node name="AttackHint" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100
+offset_top = -106
+offset_right = 100
+offset_bottom = -84
+text = "[F] Melee Attack"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 0.8)
+
+; ── MINIMAP (top-right) ──────────────────────────────────────────────────────
+[node name="MinimapContainer" type="Control" parent="."]
+process_mode = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -178
+offset_top = 10
+offset_right = -10
+offset_bottom = 178
+
+[node name="MinimapBorder" type="PanelContainer" parent="MinimapContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MinimapViewport" type="SubViewport" parent="MinimapContainer"]
+own_world_3d = false
+size = Vector2i(168, 168)
+render_target_update_mode = 3
+
+[node name="MinimapCamera" type="Camera3D" parent="MinimapContainer/MinimapViewport"]
+position = Vector3(0, 120, 0)
+rotation = Vector3(-1.5708, 0, 0)
+projection = 1
+size = 110.0
+far = 400.0
+
+[node name="MinimapTexture" type="TextureRect" parent="MinimapContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MapLabel" type="Label" parent="MinimapContainer"]
+anchor_right = 1.0
+offset_top = -18
+offset_bottom = 0
+text = "MAP  [I]=Inventory"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 0.9)
+
+; ── INVENTORY PANEL (I/Tab toggles) ─────────────────────────────────────────
+[node name="InventoryUI" type="Control" parent="."]
+process_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+mouse_filter = 0
+
+[node name="InvDimmer" type="ColorRect" parent="InventoryUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.45)
+
+; InventoryUI panel – all internal layout built in code by Hud.cs BuildInventoryPanel()
+[node name="InvPanel" type="PanelContainer" parent="InventoryUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -490
+offset_top = -300
+offset_right = 490
+offset_bottom = 300
+
+; ── PAUSE MENU ───────────────────────────────────────────────────────────────
+[node name="PauseMenu" type="Control" parent="."]
+process_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+mouse_filter = 0
+
+[node name="PauseDimmer" type="ColorRect" parent="PauseMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.55)
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
+process_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="PauseMenu/CenterContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(360, 310)
+
+[node name="VBox" type="VBoxContainer" parent="PauseMenu/CenterContainer/Panel"]
+process_mode = 3
+alignment = 1
+
+[node name="Title" type="Label" parent="PauseMenu/CenterContainer/Panel/VBox"]
+text = "PAUSED"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 38
+theme_override_colors/font_color = Color(0.9, 0.9, 0.3, 1)
+
+[node name="Sp1" type="Control" parent="PauseMenu/CenterContainer/Panel/VBox"]
+custom_minimum_size = Vector2(0, 20)
+
+[node name="ResumeBtn" type="Button" parent="PauseMenu/CenterContainer/Panel/VBox"]
+process_mode = 3
+text = "Resume"
+custom_minimum_size = Vector2(220, 46)
+theme_override_font_sizes/font_size = 18
+
+[node name="Sp2" type="Control" parent="PauseMenu/CenterContainer/Panel/VBox"]
+custom_minimum_size = Vector2(0, 8)
+
+[node name="MainMenuBtn" type="Button" parent="PauseMenu/CenterContainer/Panel/VBox"]
+process_mode = 3
+text = "Main Menu"
+custom_minimum_size = Vector2(220, 46)
+theme_override_font_sizes/font_size = 18
+
+[node name="Sp3" type="Control" parent="PauseMenu/CenterContainer/Panel/VBox"]
+custom_minimum_size = Vector2(0, 8)
+
+[node name="QuitBtn" type="Button" parent="PauseMenu/CenterContainer/Panel/VBox"]
+process_mode = 3
+text = "Quit Game"
+custom_minimum_size = Vector2(220, 46)
+theme_override_font_sizes/font_size = 18
+
+; ── GAME OVER ────────────────────────────────────────────────────────────────
+[node name="GameOverScreen" type="Control" parent="."]
+process_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+mouse_filter = 0
+
+[node name="GODimmer" type="ColorRect" parent="GameOverScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.3, 0, 0, 0.72)
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverScreen"]
+process_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="GameOverScreen/CenterContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(380, 340)
+
+[node name="VBox" type="VBoxContainer" parent="GameOverScreen/CenterContainer/Panel"]
+process_mode = 3
+alignment = 1
+
+[node name="Title" type="Label" parent="GameOverScreen/CenterContainer/Panel/VBox"]
+text = "GAME OVER"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 42
+theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
+
+[node name="Sp1" type="Control" parent="GameOverScreen/CenterContainer/Panel/VBox"]
+custom_minimum_size = Vector2(0, 16)
+
+[node name="ScoreLabel" type="Label" parent="GameOverScreen/CenterContainer/Panel/VBox"]
+text = "Score: 0"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(1, 0.92, 0.3, 1)
+
+[node name="Sp2" type="Control" parent="GameOverScreen/CenterContainer/Panel/VBox"]
+custom_minimum_size = Vector2(0, 24)
+
+[node name="RestartBtn" type="Button" parent="GameOverScreen/CenterContainer/Panel/VBox"]
+process_mode = 3
+text = "Restart"
+custom_minimum_size = Vector2(220, 46)
+theme_override_font_sizes/font_size = 18
+
+[node name="Sp3" type="Control" parent="GameOverScreen/CenterContainer/Panel/VBox"]
+custom_minimum_size = Vector2(0, 8)
+
+[node name="GOMainMenuBtn" type="Button" parent="GameOverScreen/CenterContainer/Panel/VBox"]
+process_mode = 3
+text = "Main Menu"
+custom_minimum_size = Vector2(220, 46)
+theme_override_font_sizes/font_size = 18
+
+; Signal connections are established via code in Hud.cs _Ready() for reliable paused-state behaviour.

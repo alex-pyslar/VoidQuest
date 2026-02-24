@@ -1,0 +1,253 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://Scripts/LobbyMenu.cs" id="1_lby"]
+
+[sub_resource type="StyleBoxFlat" id="SBF_panel"]
+bg_color = Color(0.05, 0.05, 0.14, 0.97)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.85, 1, 0.8)
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+
+[sub_resource type="StyleBoxFlat" id="SBF_btn"]
+bg_color = Color(0.07, 0.07, 0.18, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.5, 0.7, 0.7)
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="SBF_btn_hov"]
+bg_color = Color(0.05, 0.28, 0.36, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.85, 1, 1)
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="SBF_btn_prs"]
+bg_color = Color(0.02, 0.16, 0.22, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.85, 1, 0.6)
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="SBF_input"]
+bg_color = Color(0.08, 0.08, 0.20, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.45, 0.60, 0.7)
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="SBF_input_foc"]
+bg_color = Color(0.08, 0.10, 0.24, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.85, 1, 1)
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+
+[node name="LobbyMenu" type="Control"]
+script = ExtResource("1_lby")
+process_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.03, 0.03, 0.10, 1)
+
+[node name="Center" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(500, 520)
+theme_override_styles/panel = SubResource("SBF_panel")
+
+[node name="VBox" type="VBoxContainer" parent="Center/Panel"]
+alignment = 1
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Center/Panel/VBox"]
+text = "VOID QUEST"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(0.96, 0.78, 0.12, 1)
+theme_override_colors/font_shadow_color = Color(0.5, 0.35, 0.0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+
+[node name="StatusLabel" type="Label" parent="Center/Panel/VBox"]
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.55, 0.75, 0.50, 1)
+
+[node name="Spacer0" type="Control" parent="Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 8)
+
+; ─── Mode panel (host / join choice) ──────────────────────────────────
+
+[node name="ModePanel" type="VBoxContainer" parent="Center/Panel/VBox"]
+theme_override_constants/separation = 10
+visible = true
+
+[node name="HostBtn" type="Button" parent="Center/Panel/VBox/ModePanel"]
+text = "СОЗДАТЬ ИГРУ"
+custom_minimum_size = Vector2(0, 56)
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
+
+[node name="JoinBtn" type="Button" parent="Center/Panel/VBox/ModePanel"]
+text = "ПОДКЛЮЧИТЬСЯ"
+custom_minimum_size = Vector2(0, 56)
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0, 0.85, 1, 1)
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
+
+[node name="BackBtn" type="Button" parent="Center/Panel/VBox/ModePanel"]
+text = "НАЗАД"
+custom_minimum_size = Vector2(0, 46)
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
+
+; ─── Join panel ────────────────────────────────────────────────────────
+
+[node name="JoinPanel" type="VBoxContainer" parent="Center/Panel/VBox"]
+visible = false
+theme_override_constants/separation = 0
+
+[node name="VBox" type="VBoxContainer" parent="Center/Panel/VBox/JoinPanel"]
+theme_override_constants/separation = 10
+
+[node name="IpLabel" type="Label" parent="Center/Panel/VBox/JoinPanel/VBox"]
+text = "IP сервера:"
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.40, 0.50, 0.65, 1)
+
+[node name="IpInput" type="LineEdit" parent="Center/Panel/VBox/JoinPanel/VBox"]
+placeholder_text = "192.168.1.x   (127.0.0.1 — local)"
+custom_minimum_size = Vector2(0, 44)
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.90, 0.95, 1.0, 1)
+theme_override_colors/font_placeholder_color = Color(0.35, 0.40, 0.55, 1)
+theme_override_colors/caret_color = Color(0, 0.85, 1, 1)
+theme_override_colors/selection_color = Color(0, 0.50, 0.65, 0.5)
+theme_override_styles/normal = SubResource("SBF_input")
+theme_override_styles/focus = SubResource("SBF_input_foc")
+
+[node name="ConnectBtn" type="Button" parent="Center/Panel/VBox/JoinPanel/VBox"]
+text = "ПОДКЛЮЧИТЬСЯ"
+custom_minimum_size = Vector2(0, 52)
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0, 0.85, 1, 1)
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
+
+[node name="JoinBackBtn" type="Button" parent="Center/Panel/VBox/JoinPanel/VBox"]
+text = "НАЗАД"
+custom_minimum_size = Vector2(0, 44)
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
+
+; ─── Lobby panel (waiting room) ────────────────────────────────────────
+
+[node name="LobbyPanel" type="VBoxContainer" parent="Center/Panel/VBox"]
+visible = false
+theme_override_constants/separation = 0
+
+[node name="VBox" type="VBoxContainer" parent="Center/Panel/VBox/LobbyPanel"]
+theme_override_constants/separation = 10
+
+[node name="PlayersTitle" type="Label" parent="Center/Panel/VBox/LobbyPanel/VBox"]
+text = "ИГРОКИ:"
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.40, 0.50, 0.65, 1)
+
+[node name="PlayersList" type="Label" parent="Center/Panel/VBox/LobbyPanel/VBox"]
+text = ""
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.75, 0.80, 0.90, 1)
+custom_minimum_size = Vector2(0, 90)
+
+[node name="IpDisplay" type="Label" parent="Center/Panel/VBox/LobbyPanel/VBox"]
+text = ""
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.40, 0.60, 0.75, 1)
+
+[node name="StartBtn" type="Button" parent="Center/Panel/VBox/LobbyPanel/VBox"]
+text = "СТАРТ"
+custom_minimum_size = Vector2(0, 56)
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.96, 0.78, 0.12, 1)
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
+visible = false
+
+[node name="DisconnectBtn" type="Button" parent="Center/Panel/VBox/LobbyPanel/VBox"]
+text = "НАЗАД"
+custom_minimum_size = Vector2(0, 44)
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
+
+; ─── Signal connections ────────────────────────────────────────────────
+
+[connection signal="pressed" from="Center/Panel/VBox/ModePanel/HostBtn"          to="." method="OnHostPressed"]
+[connection signal="pressed" from="Center/Panel/VBox/ModePanel/JoinBtn"          to="." method="OnJoinPressed"]
+[connection signal="pressed" from="Center/Panel/VBox/ModePanel/BackBtn"          to="." method="OnBackToMenuPressed"]
+[connection signal="pressed" from="Center/Panel/VBox/JoinPanel/VBox/ConnectBtn"  to="." method="OnConnectPressed"]
+[connection signal="pressed" from="Center/Panel/VBox/JoinPanel/VBox/JoinBackBtn" to="." method="OnJoinBackPressed"]
+[connection signal="pressed" from="Center/Panel/VBox/LobbyPanel/VBox/StartBtn"       to="." method="OnStartGamePressed"]
+[connection signal="pressed" from="Center/Panel/VBox/LobbyPanel/VBox/DisconnectBtn"  to="." method="OnBackToMenuPressed"]

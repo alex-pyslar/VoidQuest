@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://xwc3lugtbtio"]
+
+[ext_resource type="PackedScene" uid="uid://b5jebtks0udk1" path="res://Scenes/Player.tscn" id="1_c6gwx"]
+[ext_resource type="Script" uid="uid://ctm53c16bcke3" path="res://Scripts/WorldGenerator.cs" id="3_bcbcq"]
+[ext_resource type="Script" uid="uid://bxqc354uf2si6" path="res://Scripts/BiomeData.cs" id="3_js7pq"]
+[ext_resource type="PackedScene" uid="uid://d1d55esi80517" path="res://Scenes/Objects/Tree.tscn" id="4_eu7l1"]
+[ext_resource type="Texture2D" uid="uid://cm41k6stl2m7f" path="res://Assets/Textures/water.png" id="4_fvag4"]
+[ext_resource type="PackedScene" uid="uid://cbyy2kqcl5y13" path="res://Scenes/CollectibleSphere.tscn" id="4_js7pq"]
+[ext_resource type="PackedScene" uid="uid://dfs5hpi6yugt2" path="res://Scenes/HUD.tscn" id="5_eu7l1"]
+[ext_resource type="PackedScene" uid="uid://xrxo8ev4gkpt" path="res://Scenes/Objects/Stone1.tscn" id="5_p1v5b"]
+[ext_resource type="PackedScene" uid="uid://cahdy134eho3w" path="res://Scenes/Objects/Stone2.tscn" id="6_bah7m"]
+[ext_resource type="PackedScene" uid="uid://b6hkqn83fskgj" path="res://Scenes/Objects/Stone3.tscn" id="7_fv4w7"]
+[ext_resource type="PackedScene" uid="uid://xnndcfnl430x" path="res://Scenes/Objects/Tree2.tscn" id="8_fv4w7"]
+[ext_resource type="Texture2D" uid="uid://bluxhcmoeg1pq" path="res://Assets/Textures/sand.png" id="9_kva58"]
+[ext_resource type="Texture2D" uid="uid://8tbux8k0rey1" path="res://Assets/Textures/grass.png" id="12_b2ar6"]
+[ext_resource type="Texture2D" uid="uid://x5g4jmrnqd0o" path="res://Assets/Textures/moss_block.png" id="13_6w02q"]
+[ext_resource type="Texture2D" uid="uid://b28aukst7vyqr" path="res://Assets/Textures/snow.png" id="13_gn8l5"]
+[ext_resource type="Texture2D" uid="uid://d1wjajvowsb1d" path="res://Assets/Textures/cobblestone1.png" id="14_6w02q"]
+[ext_resource type="Script" uid="uid://bgiwyxxx8qq4i" path="res://Scripts/EnemySpawner.cs" id="15_espn"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemy.tscn" id="16_enmy"]
+[ext_resource type="PackedScene" path="res://Scenes/LootItem.tscn" id="17_loot"]
+[ext_resource type="PackedScene" path="res://Scenes/Fireball.tscn" id="18_fire"]
+[ext_resource type="Script" uid="uid://q125eyw5bjec" path="res://Scripts/ChestSpawner.cs" id="19_chsp"]
+[ext_resource type="PackedScene" path="res://Scenes/Chest.tscn" id="20_chst"]
+[ext_resource type="Script" uid="uid://budvpykbv8c8j" path="res://Scripts/WorldSetup.cs" id="21_wset"]
+
+[sub_resource type="ProceduralSkyMaterial" id="PSkyMat_1"]
+sky_top_color = Color(0.34096435, 0.37048212, 0.93195605, 1)
+sky_horizon_color = Color(0.8201668, 0.4953534, 0.91191554, 1)
+sky_curve = 0.092365585
+ground_horizon_color = Color(0.8321125, 0.55012625, 0.7350979, 1)
+sun_angle_max = 25.0
+sun_curve = 0.12
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = SubResource("PSkyMat_1")
+
+[sub_resource type="Environment" id="Env_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+ambient_light_source = 3
+ambient_light_energy = 0.6
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.5
+glow_bloom = 0.1
+
+[sub_resource type="Resource" id="Resource_eu7l1"]
+script = ExtResource("3_js7pq")
+Name = "ocean"
+MaxHeight = 0.35
+HeightMul = 0.25
+IsOcean = true
+Texture = ExtResource("4_fvag4")
+ObjectChance = 0.0
+
+[sub_resource type="Resource" id="Resource_js7pq"]
+script = ExtResource("3_js7pq")
+Name = "desert"
+MinHeight = 0.35
+MaxHeight = 0.6
+MinTemp = 0.6
+HeightMul = 0.4
+Texture = ExtResource("9_kva58")
+Objects = Array[PackedScene]([ExtResource("5_p1v5b"), ExtResource("6_bah7m"), ExtResource("7_fv4w7"), ExtResource("4_js7pq")])
+
+[sub_resource type="Resource" id="Resource_ee7l0"]
+script = ExtResource("3_js7pq")
+Name = "plains"
+MinHeight = 0.35
+MaxHeight = 0.64
+MinTemp = 0.3
+MaxTemp = 0.6
+HeightMul = 0.8
+Texture = ExtResource("12_b2ar6")
+Objects = Array[PackedScene]([ExtResource("4_js7pq"), ExtResource("4_eu7l1"), ExtResource("8_fv4w7"), ExtResource("5_p1v5b"), ExtResource("6_bah7m"), ExtResource("7_fv4w7")])
+ObjectChance = 0.25
+
+[sub_resource type="Resource" id="Resource_1fphk"]
+script = ExtResource("3_js7pq")
+Name = "forest"
+MinHeight = 0.45
+MaxHeight = 0.75
+MinTemp = 0.25
+MaxTemp = 0.6
+Texture = ExtResource("13_6w02q")
+Objects = Array[PackedScene]([ExtResource("4_eu7l1"), ExtResource("8_fv4w7"), ExtResource("4_js7pq"), ExtResource("5_p1v5b"), ExtResource("6_bah7m"), ExtResource("7_fv4w7")])
+
+[sub_resource type="Resource" id="Resource_sjtuv"]
+script = ExtResource("3_js7pq")
+Name = "snow"
+MinHeight = 0.35
+MaxHeight = 0.75
+MaxTemp = 0.25
+HeightMul = 0.7
+MountainBoost = 0.2
+Texture = ExtResource("13_gn8l5")
+Objects = Array[PackedScene]([ExtResource("5_p1v5b"), ExtResource("6_bah7m"), ExtResource("7_fv4w7"), ExtResource("4_js7pq")])
+
+[sub_resource type="Resource" id="Resource_cvq6i"]
+script = ExtResource("3_js7pq")
+Name = "mountains"
+MinHeight = 0.7
+HeightMul = 1.1
+MountainBoost = 1.5
+Texture = ExtResource("14_6w02q")
+Objects = Array[PackedScene]([ExtResource("5_p1v5b"), ExtResource("6_bah7m"), ExtResource("7_fv4w7"), ExtResource("4_js7pq")])
+ObjectChance = 0.1
+
+[node name="World" type="Node3D" unique_id=1386520256]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=319628554]
+environment = SubResource("Env_1")
+
+[node name="Players" type="Node3D" parent="." unique_id=2100000001]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1819968928]
+transform = Transform3D(0.70710677, -0.61237246, 0.35355335, 0, 0.49999997, 0.86602545, -0.70710677, -0.61237246, 0.35355335, 64, 10, 64)
+light_energy = 2.0
+shadow_enabled = true
+sky_mode = 1
+
+[node name="WorldGenerator" type="Node3D" parent="." unique_id=308345682]
+script = ExtResource("3_bcbcq")
+Biomes = Array[Resource]([SubResource("Resource_eu7l1"), SubResource("Resource_js7pq"), SubResource("Resource_ee7l0"), SubResource("Resource_1fphk"), SubResource("Resource_sjtuv"), SubResource("Resource_cvq6i")])
+
+[node name="HUD" parent="." unique_id=1528015141 instance=ExtResource("5_eu7l1")]
+
+[node name="Objects" type="Node3D" parent="." unique_id=784945102]
+
+[node name="EnemySpawner" type="Node3D" parent="." unique_id=35505105]
+script = ExtResource("15_espn")
+EnemyScene = ExtResource("16_enmy")
+LootScene = ExtResource("17_loot")
+
+[node name="ChestSpawner" type="Node3D" parent="." unique_id=1123263205]
+script = ExtResource("19_chsp")
+ChestScene = ExtResource("20_chst")
+LootScene = ExtResource("17_loot")
+
+[node name="WorldSetup" type="Node3D" parent="." unique_id=2100000002]
+script = ExtResource("21_wset")
+PlayerScene = ExtResource("1_c6gwx")
+FireballScene = ExtResource("18_fire")

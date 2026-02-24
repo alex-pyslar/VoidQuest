@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+radius = 0.45
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1"]
+radius = 0.45
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="Mat_Body"]
+albedo_color = Color(0.72, 0.08, 0.08, 1)
+roughness = 0.8
+
+[sub_resource type="SphereMesh" id="SphereMesh_Eye"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="Mat_Eye"]
+albedo_color = Color(1, 0.9, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.8, 0, 1)
+emission_energy_multiplier = 2.0
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_1")
+position = Vector3(0, 0.9, 0)
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_1")
+position = Vector3(0, 0.9, 0)
+surface_material_override/0 = SubResource("Mat_Body")
+
+[node name="EyeLeft" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_Eye")
+position = Vector3(-0.18, 1.5, -0.38)
+surface_material_override/0 = SubResource("Mat_Eye")
+
+[node name="EyeRight" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_Eye")
+position = Vector3(0.18, 1.5, -0.38)
+surface_material_override/0 = SubResource("Mat_Eye")
+
+[node name="GlowLight" type="OmniLight3D" parent="."]
+position = Vector3(0, 1.2, 0)
+light_color = Color(1, 0.1, 0.1, 1)
+light_energy = 1.5
+omni_range = 4.0
+
+[node name="HealthLabel" type="Label3D" parent="."]
+position = Vector3(0, 2.4, 0)
+billboard = 1
+text = "HP 50/50"
+font_size = 48
+modulate = Color(1, 1, 1, 1)
+outline_size = 8

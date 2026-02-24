@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cahdy134eho3w"]
+
+[ext_resource type="ArrayMesh" uid="uid://behh6xfnwqlhh" path="res://Assets/Models/stone_model/stone2.obj" id="1_b6ot3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(1.4, 1, 1.2)
+
+[node name="Stone2" type="StaticBody3D" unique_id=2111432573]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=760960895]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_1")
+
+[node name="Stone2" type="MeshInstance3D" parent="." unique_id=701344920]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = ExtResource("1_b6ot3")
