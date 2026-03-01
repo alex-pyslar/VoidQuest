@@ -3,6 +3,8 @@
 A 3D action-RPG built with **Godot 4.6 + C#** featuring procedurally generated worlds,
 real-time combat, crafting, inventory management, and LAN multiplayer.
 
+<iframe frameborder="0" src="https://itch.io/embed/4337068" width="552" height="167"><a href="https://alexpyslar.itch.io/voidquest">VoidQuest by AlexPyslar</a></iframe>
+
 ---
 
 ## Features
