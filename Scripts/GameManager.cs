@@ -19,6 +19,7 @@ public partial class GameManager : Node
     {
         Instance = this;
         ProcessMode = ProcessModeEnum.Always;
+        DataLoader.EnsureLoaded();
     }
 
     public void StartGame()

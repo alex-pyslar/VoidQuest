@@ -1,0 +1,56 @@
+[
+  {
+    "id": "fireball",
+    "name_en": "Fireball",
+    "name_ru": "Огненный шар",
+    "mana_cost": 20.0,
+    "cooldown": 0.8,
+    "damage_base": 30,
+    "magic_scale": 0.5,
+    "input": "spell_1"
+  },
+  {
+    "id": "heal",
+    "name_en": "Heal",
+    "name_ru": "Исцеление",
+    "mana_cost": 30.0,
+    "cooldown": 0.8,
+    "heal_base": 40,
+    "heal_magic_scale": 0.5,
+    "input": "spell_2"
+  },
+  {
+    "id": "frost_nova",
+    "name_en": "Frost Nova",
+    "name_ru": "Ледяная нова",
+    "mana_cost": 40.0,
+    "cooldown": 8.0,
+    "radius": 8.0,
+    "duration": 3.0,
+    "input": "spell_3"
+  },
+  {
+    "id": "lightning_strike",
+    "name_en": "Lightning Strike",
+    "name_ru": "Удар молнии",
+    "mana_cost": 35.0,
+    "cooldown": 6.0,
+    "damage_base": 25,
+    "magic_scale": 1.0,
+    "radius": 20.0,
+    "requires_ability": "lightning_strike",
+    "input": "key_4"
+  },
+  {
+    "id": "void_burst",
+    "name_en": "Void Burst",
+    "name_ru": "Взрыв пустоты",
+    "mana_cost": 50.0,
+    "cooldown": 10.0,
+    "damage_base": 40,
+    "magic_scale": 1.0,
+    "radius": 10.0,
+    "requires_ability": "void_burst",
+    "input": "key_5"
+  }
+]

@@ -21,6 +21,7 @@ public class InventoryItem
 
 /// <summary>
 /// RPG inventory with item stacks and equipment slots.
+/// Equipment slots: Weapon (hidden), Ring, Amulet1, Amulet2.
 /// </summary>
 public class Inventory
 {
@@ -28,10 +29,12 @@ public class Inventory
     public IReadOnlyList<InventoryItem> Items => _items;
 
     // ── Equipment slots ────────────────────────────────────────────────
-    public string EquippedWeapon { get; private set; }
-    public string EquippedArmor  { get; private set; }
-    public string EquippedShield { get; private set; }
-    public string EquippedRing   { get; private set; }
+    public string EquippedWeapon  { get; private set; }   // kept for rusty_sword starter
+    public string EquippedArmor   { get; private set; }   // kept for legacy drops
+    public string EquippedShield  { get; private set; }   // kept for legacy drops
+    public string EquippedRing    { get; private set; }
+    public string EquippedAmulet1 { get; private set; }
+    public string EquippedAmulet2 { get; private set; }
 
     public event Action InventoryChanged;
 
@@ -78,6 +81,18 @@ public class Inventory
             case ItemCategory.Armor:  old = EquippedArmor;  EquippedArmor  = id; break;
             case ItemCategory.Shield: old = EquippedShield; EquippedShield = id; break;
             case ItemCategory.Ring:   old = EquippedRing;   EquippedRing   = id; break;
+            case ItemCategory.Amulet:
+                // Fill slot 1, then slot 2, then swap slot 1
+                if (EquippedAmulet1 == null)
+                    EquippedAmulet1 = id;
+                else if (EquippedAmulet2 == null)
+                    EquippedAmulet2 = id;
+                else
+                {
+                    old             = EquippedAmulet1;
+                    EquippedAmulet1 = id;
+                }
+                break;
             default: return null;
         }
         RemoveItem(id);
@@ -89,17 +104,32 @@ public class Inventory
     // ── Stat bonuses from all equipped gear ───────────────────────────
 
     public int TotalAtkBonus =>
-        Bonus(EquippedWeapon, d => d.AtkBonus) + Bonus(EquippedArmor,  d => d.AtkBonus) +
-        Bonus(EquippedShield, d => d.AtkBonus) + Bonus(EquippedRing,   d => d.AtkBonus);
+        Bonus(EquippedWeapon,  d => d.AtkBonus) + Bonus(EquippedArmor,   d => d.AtkBonus) +
+        Bonus(EquippedShield,  d => d.AtkBonus) + Bonus(EquippedRing,    d => d.AtkBonus) +
+        Bonus(EquippedAmulet1, d => d.AtkBonus) + Bonus(EquippedAmulet2, d => d.AtkBonus);
+
     public int TotalDefBonus =>
-        Bonus(EquippedWeapon, d => d.DefBonus) + Bonus(EquippedArmor,  d => d.DefBonus) +
-        Bonus(EquippedShield, d => d.DefBonus) + Bonus(EquippedRing,   d => d.DefBonus);
+        Bonus(EquippedWeapon,  d => d.DefBonus) + Bonus(EquippedArmor,   d => d.DefBonus) +
+        Bonus(EquippedShield,  d => d.DefBonus) + Bonus(EquippedRing,    d => d.DefBonus) +
+        Bonus(EquippedAmulet1, d => d.DefBonus) + Bonus(EquippedAmulet2, d => d.DefBonus);
+
     public int TotalMagBonus =>
-        Bonus(EquippedWeapon, d => d.MagBonus) + Bonus(EquippedArmor,  d => d.MagBonus) +
-        Bonus(EquippedShield, d => d.MagBonus) + Bonus(EquippedRing,   d => d.MagBonus);
+        Bonus(EquippedWeapon,  d => d.MagBonus) + Bonus(EquippedArmor,   d => d.MagBonus) +
+        Bonus(EquippedShield,  d => d.MagBonus) + Bonus(EquippedRing,    d => d.MagBonus) +
+        Bonus(EquippedAmulet1, d => d.MagBonus) + Bonus(EquippedAmulet2, d => d.MagBonus);
 
     private static int Bonus(string id, Func<ItemDef, int> sel)
         => id != null && ItemDatabase.Get(id) is ItemDef d ? sel(d) : 0;
+
+    // ── Ability check ─────────────────────────────────────────────────
+
+    /// <summary>Returns true if any equipped amulet grants the given ability id.</summary>
+    public bool HasAbility(string abilityId)
+    {
+        string a1 = EquippedAmulet1 != null ? ItemDatabase.Get(EquippedAmulet1)?.AbilityId : null;
+        string a2 = EquippedAmulet2 != null ? ItemDatabase.Get(EquippedAmulet2)?.AbilityId : null;
+        return a1 == abilityId || a2 == abilityId;
+    }
 
     // ── Unequip ────────────────────────────────────────────────────────
 
@@ -112,10 +142,18 @@ public class Inventory
         bool unequipped = false;
         switch (def.Category)
         {
-            case ItemCategory.Weapon: if (EquippedWeapon == id) { EquippedWeapon = null; unequipped = true; } break;
-            case ItemCategory.Armor:  if (EquippedArmor  == id) { EquippedArmor  = null; unequipped = true; } break;
-            case ItemCategory.Shield: if (EquippedShield == id) { EquippedShield = null; unequipped = true; } break;
-            case ItemCategory.Ring:   if (EquippedRing   == id) { EquippedRing   = null; unequipped = true; } break;
+            case ItemCategory.Weapon:
+                if (EquippedWeapon == id) { EquippedWeapon = null; unequipped = true; } break;
+            case ItemCategory.Armor:
+                if (EquippedArmor  == id) { EquippedArmor  = null; unequipped = true; } break;
+            case ItemCategory.Shield:
+                if (EquippedShield == id) { EquippedShield = null; unequipped = true; } break;
+            case ItemCategory.Ring:
+                if (EquippedRing   == id) { EquippedRing   = null; unequipped = true; } break;
+            case ItemCategory.Amulet:
+                if (EquippedAmulet1 == id) { EquippedAmulet1 = null; unequipped = true; }
+                else if (EquippedAmulet2 == id) { EquippedAmulet2 = null; unequipped = true; }
+                break;
         }
         if (unequipped)
         {

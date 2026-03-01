@@ -4,34 +4,38 @@ namespace VoidQuest;
 
 /// <summary>
 /// A treasure chest. Walk into its detection zone to open it.
-/// Animates the lid, dims the glow, and scatters loot items on the ground.
+/// Animates the lid, dims the glow, and adds loot DIRECTLY into the player's inventory.
 /// </summary>
 public partial class TreasureChest : Node3D
 {
+    // LootScene kept for optional physical drops, but not used by default
     [Export] public PackedScene LootScene;
 
-    // Default rich loot table — chests contain a mix of common + rare materials
     [Export] public string[] LootPool =
     {
-        // Consumables
-        "health_potion", "mana_potion", "big_health_potion", "elixir", "rejuvenation_potion",
-        // Weapons (common → rare)
-        "iron_sword", "steel_sword", "battle_axe", "magic_staff", "void_blade",
-        // Armor
-        "chainmail", "iron_armor", "mage_robe", "crystal_robe",
-        // Shields
-        "iron_shield", "tower_shield", "crystal_shield", "void_aegis",
+        // Consumables (common)
+        "health_potion", "mana_potion", "big_health_potion",
+        "elixir", "rejuvenation_potion",
+        // Consumables (rare)
+        "full_restore", "void_elixir",
         // Rings
-        "power_ring", "mage_ring", "guardian_ring", "bone_ring",
+        "power_ring", "mage_ring", "void_ring",
+        // Amulets (common)
+        "amulet_warrior", "amulet_fire", "amulet_frost",
+        "amulet_life",    "amulet_blood",
+        // Amulets (rare)
+        "amulet_lightning", "amulet_void",
         // Materials (common)
-        "crystal", "iron_ore", "leather_piece", "coal",
+        "crystal", "void_essence", "bone_fragment",
+        "iron_ore", "leather_piece", "coal",
         // Materials (uncommon)
-        "void_essence", "bone_fragment", "dark_steel_ingot", "void_shard", "enchanted_thread",
-        // Materials (rare – low weight by rarity, equal chance here but list is small)
-        "essence_crystal", "mithril_ore", "dragon_scale",
+        "void_shard", "essence_crystal", "enchanted_thread", "iron_ingot",
+        // Materials (rare)
+        "dragon_scale",
     };
-    [Export] public int   MinItems  = 2;
-    [Export] public int   MaxItems  = 4;
+
+    [Export] public int MinItems = 2;
+    [Export] public int MaxItems = 5;
 
     private bool           _opened = false;
     private MeshInstance3D _lid;
@@ -53,12 +57,12 @@ public partial class TreasureChest : Node3D
             Open(player);
     }
 
-    private void Open(Player _player)
+    private void Open(Player player)
     {
         if (_opened) return;
         _opened = true;
 
-        // Animate lid opening (tween position up)
+        // Animate lid
         if (_lid != null)
         {
             var tween = CreateTween();
@@ -66,28 +70,18 @@ public partial class TreasureChest : Node3D
                  .SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
         }
 
-        // Dim the glow
         if (_light != null)
             _light.LightEnergy = 0.2f;
 
-        // Spawn random items
+        // Add loot directly to player inventory
+        if (LootPool == null || LootPool.Length == 0) return;
         int count = (int)GD.RandRange(MinItems, MaxItems + 1);
         for (int i = 0; i < count; i++)
-            SpawnLoot();
-    }
-
-    private void SpawnLoot()
-    {
-        if (LootScene == null || LootPool == null || LootPool.Length == 0) return;
-
-        string id   = LootPool[(int)(GD.Randi() % (uint)LootPool.Length)];
-        var    loot = LootScene.Instantiate<LootItem>();
-        loot.ItemId = id;
-
-        float angle = (float)GD.RandRange(0.0, Mathf.Tau);
-        float dist  = (float)GD.RandRange(0.6, 1.6);
-        GetTree().CurrentScene.AddChild(loot);
-        loot.GlobalPosition = GlobalPosition + new Vector3(
-            Mathf.Cos(angle) * dist, 0.6f, Mathf.Sin(angle) * dist);
+        {
+            string id = LootPool[(int)(GD.Randi() % (uint)LootPool.Length)];
+            if (ItemDatabase.Get(id) == null) continue;
+            player.Inventory.AddItemById(id, 1);
+            GD.Print($"[Chest] +{ItemDatabase.Get(id)?.Name}");
+        }
     }
 }

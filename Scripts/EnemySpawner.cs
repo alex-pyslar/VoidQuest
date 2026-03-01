@@ -94,7 +94,6 @@ public partial class EnemySpawner : Node3D
                       : roll < 0.40f ? EnemyVariant.Fast
                       : EnemyVariant.Normal;
 
-        if (LootScene != null) enemy.LootScene = LootScene;
         GetParent().AddChild(enemy);
         enemy.GlobalPosition = pos.Value;
     }

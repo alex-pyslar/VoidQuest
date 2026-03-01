@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://q125eyw5bjec" path="res://Scripts/ChestSpawner.cs" id="19_chsp"]
 [ext_resource type="PackedScene" path="res://Scenes/Chest.tscn" id="20_chst"]
 [ext_resource type="Script" uid="uid://budvpykbv8c8j" path="res://Scripts/WorldSetup.cs" id="21_wset"]
+[ext_resource type="AudioStream" uid="uid://bcnmgqmuollu7" path="res://Assets/Music/VoidQuest - Demo Game.wav" id="24_d3ars"]
 
 [sub_resource type="ProceduralSkyMaterial" id="PSkyMat_1"]
 sky_top_color = Color(0.34096435, 0.37048212, 0.93195605, 1)
@@ -142,3 +143,8 @@ LootScene = ExtResource("17_loot")
 script = ExtResource("21_wset")
 PlayerScene = ExtResource("1_c6gwx")
 FireballScene = ExtResource("18_fire")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=328245327]
+stream = ExtResource("24_d3ars")
+volume_db = -11.143
+autoplay = true

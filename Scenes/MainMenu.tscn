@@ -1,209 +1,242 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene format=3 uid="uid://gqv1xtu3f3e5"]
 
-[ext_resource type="Script" path="res://Scripts/MainMenu.cs" id="1_mnu"]
+[ext_resource type="Script" uid="uid://bc7mfklko3nmo" path="res://Scripts/MainMenu.cs" id="1_mnu"]
+[ext_resource type="AudioStream" uid="uid://d2qpj25iy71da" path="res://Assets/Music/VoidQuest - Main Menu.wav" id="2_853f1"]
 
 [sub_resource type="StyleBoxFlat" id="SBF_panel"]
+content_margin_left = 32.0
+content_margin_top = 36.0
+content_margin_right = 32.0
+content_margin_bottom = 36.0
 bg_color = Color(0.05, 0.05, 0.14, 0.97)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0, 0.85, 1, 0.8)
-content_margin_left = 32.0
-content_margin_top = 36.0
-content_margin_right = 32.0
-content_margin_bottom = 36.0
 
 [sub_resource type="StyleBoxFlat" id="SBF_btn"]
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
 bg_color = Color(0.07, 0.07, 0.18, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0, 0.5, 0.7, 0.7)
-content_margin_left = 12.0
-content_margin_top = 10.0
-content_margin_right = 12.0
-content_margin_bottom = 10.0
-
-[sub_resource type="StyleBoxFlat" id="SBF_btn_hov"]
-bg_color = Color(0.05, 0.28, 0.36, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0.85, 1, 1)
-content_margin_left = 12.0
-content_margin_top = 10.0
-content_margin_right = 12.0
-content_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxFlat" id="SBF_btn_prs"]
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
 bg_color = Color(0.02, 0.16, 0.22, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0, 0.85, 1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="SBF_btn_hov"]
 content_margin_left = 12.0
 content_margin_top = 10.0
 content_margin_right = 12.0
 content_margin_bottom = 10.0
+bg_color = Color(0.05, 0.28, 0.36, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.85, 1, 1)
 
-[node name="MainMenu" type="Control"]
-script = ExtResource("1_mnu")
+[node name="MainMenu" type="Control" unique_id=1044481314]
 process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mnu")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1985887310]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.03, 0.03, 0.1, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1730869425]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Background" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color(0.03, 0.03, 0.10, 1)
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+[node name="Panel" type="PanelContainer" parent="CenterContainer" unique_id=183046562]
 custom_minimum_size = Vector2(440, 480)
+layout_mode = 2
 theme_override_styles/panel = SubResource("SBF_panel")
 
-[node name="VBox" type="VBoxContainer" parent="CenterContainer/Panel"]
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/Panel" unique_id=142253983]
+layout_mode = 2
 alignment = 1
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/Panel/VBox"]
-text = "VOID QUEST"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 54
+[node name="TitleLabel" type="Label" parent="CenterContainer/Panel/VBox" unique_id=1873654648]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 0.78, 0.12, 1)
-theme_override_colors/font_shadow_color = Color(0.5, 0.35, 0.0, 0.85)
+theme_override_colors/font_shadow_color = Color(0.5, 0.35, 0, 0.85)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 54
+text = "VOID QUEST"
+horizontal_alignment = 1
 
-[node name="SubTitle" type="Label" parent="CenterContainer/Panel/VBox"]
+[node name="SubTitle" type="Label" parent="CenterContainer/Panel/VBox" unique_id=608167482]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.65, 1)
+theme_override_font_sizes/font_size = 14
 text = "Explore. Collect. Survive."
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 14
-theme_override_colors/font_color = Color(0.40, 0.50, 0.65, 1)
 
-[node name="Spacer0" type="Control" parent="CenterContainer/Panel/VBox"]
+[node name="Spacer0" type="Control" parent="CenterContainer/Panel/VBox" unique_id=739749045]
 custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
 
-[node name="MainPanel" type="VBoxContainer" parent="CenterContainer/Panel/VBox"]
+[node name="MainPanel" type="VBoxContainer" parent="CenterContainer/Panel/VBox" unique_id=1140076719]
+layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="CenterContainer/Panel/VBox/MainPanel"]
+[node name="PlayButton" type="Button" parent="CenterContainer/Panel/VBox/MainPanel" unique_id=191215966]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
 text = "ИГРАТЬ"
-custom_minimum_size = Vector2(0, 52)
-theme_override_font_sizes/font_size = 20
-theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
-theme_override_styles/normal = SubResource("SBF_btn")
-theme_override_styles/hover = SubResource("SBF_btn_hov")
-theme_override_styles/pressed = SubResource("SBF_btn_prs")
-theme_override_styles/focus = SubResource("SBF_btn_hov")
 
-[node name="Spacer1" type="Control" parent="CenterContainer/Panel/VBox/MainPanel"]
+[node name="Spacer1" type="Control" parent="CenterContainer/Panel/VBox/MainPanel" unique_id=502124971]
 custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 
-[node name="MultiplayerButton" type="Button" parent="CenterContainer/Panel/VBox/MainPanel"]
-text = "МУЛЬТИПЛЕЕР"
+[node name="MultiplayerButton" type="Button" parent="CenterContainer/Panel/VBox/MainPanel" unique_id=783557993]
 custom_minimum_size = Vector2(0, 52)
-theme_override_font_sizes/font_size = 20
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("SBF_btn")
-theme_override_styles/hover = SubResource("SBF_btn_hov")
 theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
 theme_override_styles/focus = SubResource("SBF_btn_hov")
+text = "МУЛЬТИПЛЕЕР"
 
-[node name="Spacer2" type="Control" parent="CenterContainer/Panel/VBox/MainPanel"]
+[node name="Spacer2" type="Control" parent="CenterContainer/Panel/VBox/MainPanel" unique_id=332649026]
 custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 
-[node name="SettingsButton" type="Button" parent="CenterContainer/Panel/VBox/MainPanel"]
+[node name="SettingsButton" type="Button" parent="CenterContainer/Panel/VBox/MainPanel" unique_id=132996216]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
 text = "НАСТРОЙКИ"
-custom_minimum_size = Vector2(0, 52)
-theme_override_font_sizes/font_size = 20
-theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
-theme_override_styles/normal = SubResource("SBF_btn")
-theme_override_styles/hover = SubResource("SBF_btn_hov")
-theme_override_styles/pressed = SubResource("SBF_btn_prs")
-theme_override_styles/focus = SubResource("SBF_btn_hov")
 
-[node name="Spacer3" type="Control" parent="CenterContainer/Panel/VBox/MainPanel"]
+[node name="Spacer3" type="Control" parent="CenterContainer/Panel/VBox/MainPanel" unique_id=839120566]
 custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 
-[node name="QuitButton" type="Button" parent="CenterContainer/Panel/VBox/MainPanel"]
-text = "ВЫХОД"
+[node name="QuitButton" type="Button" parent="CenterContainer/Panel/VBox/MainPanel" unique_id=2098988414]
 custom_minimum_size = Vector2(0, 52)
-theme_override_font_sizes/font_size = 20
+layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("SBF_btn")
-theme_override_styles/hover = SubResource("SBF_btn_hov")
 theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
 theme_override_styles/focus = SubResource("SBF_btn_hov")
+text = "ВЫХОД"
 
-[node name="SettingsPanel" type="VBoxContainer" parent="CenterContainer/Panel/VBox"]
+[node name="SettingsPanel" type="VBoxContainer" parent="CenterContainer/Panel/VBox" unique_id=578322840]
 visible = false
+layout_mode = 2
 
-[node name="LangLabel" type="Label" parent="CenterContainer/Panel/VBox/SettingsPanel"]
+[node name="LangLabel" type="Label" parent="CenterContainer/Panel/VBox/SettingsPanel" unique_id=675620130]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.65, 1)
+theme_override_font_sizes/font_size = 16
 text = "ЯЗЫК / LANGUAGE"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 16
-theme_override_colors/font_color = Color(0.40, 0.50, 0.65, 1)
 
-[node name="SpacerL" type="Control" parent="CenterContainer/Panel/VBox/SettingsPanel"]
+[node name="SpacerL" type="Control" parent="CenterContainer/Panel/VBox/SettingsPanel" unique_id=5145356]
 custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
 
-[node name="LangCenter" type="CenterContainer" parent="CenterContainer/Panel/VBox/SettingsPanel"]
+[node name="LangCenter" type="CenterContainer" parent="CenterContainer/Panel/VBox/SettingsPanel" unique_id=326460584]
+layout_mode = 2
 
-[node name="LangHBox" type="HBoxContainer" parent="CenterContainer/Panel/VBox/SettingsPanel/LangCenter"]
+[node name="LangHBox" type="HBoxContainer" parent="CenterContainer/Panel/VBox/SettingsPanel/LangCenter" unique_id=491655872]
+layout_mode = 2
 
-[node name="LangEnBtn" type="Button" parent="CenterContainer/Panel/VBox/SettingsPanel/LangCenter/LangHBox"]
+[node name="LangEnBtn" type="Button" parent="CenterContainer/Panel/VBox/SettingsPanel/LangCenter/LangHBox" unique_id=1990760766]
+custom_minimum_size = Vector2(120, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("SBF_btn")
+theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
+theme_override_styles/focus = SubResource("SBF_btn_hov")
 text = "EN"
-custom_minimum_size = Vector2(120, 52)
-theme_override_font_sizes/font_size = 22
-theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
-theme_override_styles/normal = SubResource("SBF_btn")
-theme_override_styles/hover = SubResource("SBF_btn_hov")
-theme_override_styles/pressed = SubResource("SBF_btn_prs")
-theme_override_styles/focus = SubResource("SBF_btn_hov")
 
-[node name="LangGap" type="Control" parent="CenterContainer/Panel/VBox/SettingsPanel/LangCenter/LangHBox"]
+[node name="LangGap" type="Control" parent="CenterContainer/Panel/VBox/SettingsPanel/LangCenter/LangHBox" unique_id=617823210]
 custom_minimum_size = Vector2(14, 0)
+layout_mode = 2
 
-[node name="LangRuBtn" type="Button" parent="CenterContainer/Panel/VBox/SettingsPanel/LangCenter/LangHBox"]
-text = "RU"
+[node name="LangRuBtn" type="Button" parent="CenterContainer/Panel/VBox/SettingsPanel/LangCenter/LangHBox" unique_id=194636084]
 custom_minimum_size = Vector2(120, 52)
-theme_override_font_sizes/font_size = 22
+layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 0.78, 0.12, 1)
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("SBF_btn")
-theme_override_styles/hover = SubResource("SBF_btn_hov")
 theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
 theme_override_styles/focus = SubResource("SBF_btn_hov")
+text = "RU"
 
-[node name="SpacerB" type="Control" parent="CenterContainer/Panel/VBox/SettingsPanel"]
+[node name="SpacerB" type="Control" parent="CenterContainer/Panel/VBox/SettingsPanel" unique_id=2082171710]
 custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
 
-[node name="BackButton" type="Button" parent="CenterContainer/Panel/VBox/SettingsPanel"]
-text = "НАЗАД"
+[node name="BackButton" type="Button" parent="CenterContainer/Panel/VBox/SettingsPanel" unique_id=528192727]
 custom_minimum_size = Vector2(0, 52)
-theme_override_font_sizes/font_size = 20
+layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("SBF_btn")
-theme_override_styles/hover = SubResource("SBF_btn_hov")
 theme_override_styles/pressed = SubResource("SBF_btn_prs")
+theme_override_styles/hover = SubResource("SBF_btn_hov")
 theme_override_styles/focus = SubResource("SBF_btn_hov")
+text = "НАЗАД"
 
-[node name="VersionLabel" type="Label" parent="."]
-anchor_left = 0.0
+[node name="VersionLabel" type="Label" parent="." unique_id=1285550008]
+layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -26
-offset_bottom = 0
+offset_top = -26.0
+theme_override_colors/font_color = Color(0.28, 0.32, 0.42, 1)
+theme_override_font_sizes/font_size = 12
 text = "v0.1  |  WASD – move   Mouse – look   Shift – sprint   Space – jump   Esc – pause"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 12
-theme_override_colors/font_color = Color(0.28, 0.32, 0.42, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1151679924]
+stream = ExtResource("2_853f1")
+autoplay = true
 
 [connection signal="pressed" from="CenterContainer/Panel/VBox/MainPanel/PlayButton" to="." method="OnPlayPressed"]
 [connection signal="pressed" from="CenterContainer/Panel/VBox/MainPanel/MultiplayerButton" to="." method="OnMultiplayerPressed"]

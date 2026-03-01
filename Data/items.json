@@ -1,0 +1,325 @@
+[
+  {
+    "id": "health_potion",
+    "name_en": "Health Potion",
+    "name_ru": "Зелье здоровья",
+    "category": "Consumable",
+    "desc_en": "Restores 40 HP.",
+    "desc_ru": "Восстанавливает 40 ОЗ.",
+    "on_use": "heal",
+    "on_use_amount": 40
+  },
+  {
+    "id": "big_health_potion",
+    "name_en": "Big Health Potion",
+    "name_ru": "Большое зелье здоровья",
+    "category": "Consumable",
+    "desc_en": "Restores 80 HP.",
+    "desc_ru": "Восстанавливает 80 ОЗ.",
+    "on_use": "heal",
+    "on_use_amount": 80
+  },
+  {
+    "id": "mana_potion",
+    "name_en": "Mana Potion",
+    "name_ru": "Зелье маны",
+    "category": "Consumable",
+    "desc_en": "Restores 40 mana.",
+    "desc_ru": "Восстанавливает 40 МН.",
+    "on_use": "restore_mana",
+    "on_use_amount": 40
+  },
+  {
+    "id": "big_mana_potion",
+    "name_en": "Big Mana Potion",
+    "name_ru": "Большое зелье маны",
+    "category": "Consumable",
+    "desc_en": "Restores 80 mana.",
+    "desc_ru": "Восстанавливает 80 МН.",
+    "on_use": "restore_mana",
+    "on_use_amount": 80
+  },
+  {
+    "id": "rejuvenation_potion",
+    "name_en": "Rejuvenation Potion",
+    "name_ru": "Зелье омоложения",
+    "category": "Consumable",
+    "desc_en": "Restores 60 HP and 60 mana.",
+    "desc_ru": "Восстанавливает 60 ОЗ и 60 МН.",
+    "on_use": "heal_and_mana",
+    "on_use_amount": 60,
+    "on_use_amount2": 60
+  },
+  {
+    "id": "elixir",
+    "name_en": "Elixir",
+    "name_ru": "Эликсир",
+    "category": "Consumable",
+    "desc_en": "Restores 80 HP and 80 mana.",
+    "desc_ru": "Восстанавливает 80 ОЗ и 80 МН.",
+    "on_use": "heal_and_mana",
+    "on_use_amount": 80,
+    "on_use_amount2": 80
+  },
+  {
+    "id": "full_restore",
+    "name_en": "Full Restore",
+    "name_ru": "Полное восстановление",
+    "category": "Consumable",
+    "desc_en": "Fully restores HP and mana.",
+    "desc_ru": "Полностью восстанавливает ОЗ и МН.",
+    "on_use": "full_restore"
+  },
+  {
+    "id": "void_elixir",
+    "name_en": "Void Elixir",
+    "name_ru": "Эликсир пустоты",
+    "category": "Consumable",
+    "desc_en": "Restores 150 HP and 150 mana.",
+    "desc_ru": "Восстанавливает 150 ОЗ и 150 МН.",
+    "on_use": "heal_and_mana",
+    "on_use_amount": 150,
+    "on_use_amount2": 150
+  },
+  {
+    "id": "rusty_sword",
+    "name_en": "Rusty Sword",
+    "name_ru": "Ржавый меч",
+    "category": "Weapon",
+    "desc_en": "A worn blade. +5 ATK.",
+    "desc_ru": "Поношенный клинок. +5 АТК.",
+    "atk": 5
+  },
+  {
+    "id": "iron_sword",
+    "name_en": "Iron Sword",
+    "name_ru": "Железный меч",
+    "category": "Weapon",
+    "desc_en": "Sturdy iron blade. +15 ATK.",
+    "desc_ru": "Прочный железный клинок. +15 АТК.",
+    "atk": 15
+  },
+  {
+    "id": "void_blade",
+    "name_en": "Void Blade",
+    "name_ru": "Клинок пустоты",
+    "category": "Weapon",
+    "desc_en": "Void-forged. +25 ATK, +8 MAG.",
+    "desc_ru": "Клинок из пустоты. +25 АТК, +8 МАГ.",
+    "atk": 25,
+    "mag": 8
+  },
+  {
+    "id": "leather_armor",
+    "name_en": "Leather Armor",
+    "name_ru": "Кожаный доспех",
+    "category": "Armor",
+    "desc_en": "Light protection. +10 DEF.",
+    "desc_ru": "Лёгкая защита. +10 ЗАЩ.",
+    "def": 10
+  },
+  {
+    "id": "iron_armor",
+    "name_en": "Iron Armor",
+    "name_ru": "Железный доспех",
+    "category": "Armor",
+    "desc_en": "Heavy iron plates. +25 DEF.",
+    "desc_ru": "Тяжёлые железные пластины. +25 ЗАЩ.",
+    "def": 25
+  },
+  {
+    "id": "iron_shield",
+    "name_en": "Iron Shield",
+    "name_ru": "Железный щит",
+    "category": "Shield",
+    "desc_en": "Reliable iron buckler. +18 DEF.",
+    "desc_ru": "Надёжный железный щит. +18 ЗАЩ.",
+    "def": 18
+  },
+  {
+    "id": "power_ring",
+    "name_en": "Power Ring",
+    "name_ru": "Кольцо силы",
+    "category": "Ring",
+    "desc_en": "Boosts strength. +8 ATK.",
+    "desc_ru": "Усиливает силу. +8 АТК.",
+    "atk": 8
+  },
+  {
+    "id": "mage_ring",
+    "name_en": "Mage Ring",
+    "name_ru": "Кольцо мага",
+    "category": "Ring",
+    "desc_en": "Amplifies spells. +15 MAG.",
+    "desc_ru": "Усиливает заклинания. +15 МАГ.",
+    "mag": 15
+  },
+  {
+    "id": "void_ring",
+    "name_en": "Void Ring",
+    "name_ru": "Кольцо пустоты",
+    "category": "Ring",
+    "desc_en": "Resonates with darkness. +8 ATK, +8 MAG.",
+    "desc_ru": "Резонирует с тьмой. +8 АТК, +8 МАГ.",
+    "atk": 8,
+    "mag": 8
+  },
+  {
+    "id": "amulet_warrior",
+    "name_en": "Warrior's Amulet",
+    "name_ru": "Амулет воина",
+    "category": "Amulet",
+    "desc_en": "Ancient warrior spirit. +20 ATK, +10 DEF.",
+    "desc_ru": "Дух древнего воина. +20 АТК, +10 ЗАЩ.",
+    "atk": 20,
+    "def": 10
+  },
+  {
+    "id": "amulet_fire",
+    "name_en": "Amulet of Fire",
+    "name_ru": "Амулет огня",
+    "category": "Amulet",
+    "desc_en": "+20 MAG. Fireball deals 50% more damage.",
+    "desc_ru": "+20 МАГ. Огненный шар наносит на 50% больше урона.",
+    "mag": 20,
+    "ability_id": "fireball_boost"
+  },
+  {
+    "id": "amulet_frost",
+    "name_en": "Amulet of Frost",
+    "name_ru": "Амулет мороза",
+    "category": "Amulet",
+    "desc_en": "+15 MAG. Frost Nova covers a much larger area and freezes longer.",
+    "desc_ru": "+15 МАГ. Ледяная нова покрывает большую площадь и замораживает дольше.",
+    "mag": 15,
+    "ability_id": "frost_boost"
+  },
+  {
+    "id": "amulet_life",
+    "name_en": "Amulet of Life",
+    "name_ru": "Амулет жизни",
+    "category": "Amulet",
+    "desc_en": "+30 DEF. Slowly regenerates HP every 2 seconds.",
+    "desc_ru": "+30 ЗАЩ. Медленно восстанавливает ОЗ каждые 2 секунды.",
+    "def": 30,
+    "ability_id": "life_regen"
+  },
+  {
+    "id": "amulet_lightning",
+    "name_en": "Amulet of Lightning",
+    "name_ru": "Амулет молнии",
+    "category": "Amulet",
+    "desc_en": "+15 MAG. Grants Lightning Strike [Key 4]: arc of lightning that hits all nearby enemies.",
+    "desc_ru": "+15 МАГ. Даёт Удар молнии [Клавиша 4]: молния, поражающая всех ближайших врагов.",
+    "mag": 15,
+    "ability_id": "lightning_strike"
+  },
+  {
+    "id": "amulet_void",
+    "name_en": "Amulet of the Void",
+    "name_ru": "Амулет пустоты",
+    "category": "Amulet",
+    "desc_en": "+25 MAG. Grants Void Burst [Key 5]: a void explosion around the player.",
+    "desc_ru": "+25 МАГ. Даёт Взрыв пустоты [Клавиша 5]: взрыв пустоты вокруг игрока.",
+    "mag": 25,
+    "ability_id": "void_burst"
+  },
+  {
+    "id": "amulet_blood",
+    "name_en": "Amulet of Blood",
+    "name_ru": "Кровавый амулет",
+    "category": "Amulet",
+    "desc_en": "+15 ATK. Melee attacks steal life: heal 15% of damage dealt.",
+    "desc_ru": "+15 АТК. Удары ближнего боя похищают жизнь: восстанавливают 15% урона.",
+    "atk": 15,
+    "ability_id": "blood_drain"
+  },
+  {
+    "id": "crystal",
+    "name_en": "Crystal Shard",
+    "name_ru": "Осколок кристалла",
+    "category": "Material",
+    "desc_en": "A glowing void crystal.",
+    "desc_ru": "Светящийся кристалл пустоты."
+  },
+  {
+    "id": "void_essence",
+    "name_en": "Void Essence",
+    "name_ru": "Сущность пустоты",
+    "category": "Material",
+    "desc_en": "Dense dark energy.",
+    "desc_ru": "Плотная тёмная энергия."
+  },
+  {
+    "id": "bone_fragment",
+    "name_en": "Bone Fragment",
+    "name_ru": "Обломок кости",
+    "category": "Material",
+    "desc_en": "Dropped by armoured foes.",
+    "desc_ru": "Выпадает с бронированных врагов."
+  },
+  {
+    "id": "leather_piece",
+    "name_en": "Leather Piece",
+    "name_ru": "Кусок кожи",
+    "category": "Material",
+    "desc_en": "Scraps of cured hide.",
+    "desc_ru": "Кусочки выдубленной кожи."
+  },
+  {
+    "id": "iron_ore",
+    "name_en": "Iron Ore",
+    "name_ru": "Железная руда",
+    "category": "Material",
+    "desc_en": "Raw iron ore.",
+    "desc_ru": "Сырая железная руда."
+  },
+  {
+    "id": "iron_ingot",
+    "name_en": "Iron Ingot",
+    "name_ru": "Железный слиток",
+    "category": "Material",
+    "desc_en": "Smelted iron bar. Craft from 3 Iron Ore.",
+    "desc_ru": "Слиток железа. Создаётся из 3 железной руды."
+  },
+  {
+    "id": "coal",
+    "name_en": "Coal",
+    "name_ru": "Уголь",
+    "category": "Material",
+    "desc_en": "Black fuel rock.",
+    "desc_ru": "Чёрный уголь."
+  },
+  {
+    "id": "void_shard",
+    "name_en": "Void Shard",
+    "name_ru": "Осколок пустоты",
+    "category": "Material",
+    "desc_en": "Condensed void fragment.",
+    "desc_ru": "Сжатый фрагмент пустоты."
+  },
+  {
+    "id": "essence_crystal",
+    "name_en": "Essence Crystal",
+    "name_ru": "Кристалл сущности",
+    "category": "Material",
+    "desc_en": "Crystallised magic essence.",
+    "desc_ru": "Кристаллизованная магическая сущность."
+  },
+  {
+    "id": "enchanted_thread",
+    "name_en": "Enchanted Thread",
+    "name_ru": "Зачарованная нить",
+    "category": "Material",
+    "desc_en": "Magically woven silk.",
+    "desc_ru": "Магически сотканный шёлк."
+  },
+  {
+    "id": "dragon_scale",
+    "name_en": "Dragon Scale",
+    "name_ru": "Чешуя дракона",
+    "category": "Material",
+    "desc_en": "Drops only from Tank elite enemies.",
+    "desc_ru": "Выпадает только с элитных врагов Танков."
+  }
+]

@@ -7,6 +7,8 @@ public enum EnemyVariant { Normal, Fast, Tank }
 
 /// <summary>
 /// Enemy with patrol/chase/attack AI, freeze support, loot drops, and XP grant.
+/// On death, loot goes DIRECTLY into the player's inventory.
+/// Stats and loot pools are loaded from Data/enemies.json via DataLoader.
 /// </summary>
 public partial class Enemy : CharacterBody3D
 {
@@ -20,11 +22,9 @@ public partial class Enemy : CharacterBody3D
     [Export] public int   ScoreReward    = 10;
     [Export] public int   XpReward       = 20;
 
-    /// <summary>Loot table: array of item ids to potentially drop.</summary>
-    [Export] public string[] LootPool = { "health_potion", "mana_potion", "rusty_sword", "leather_armor" };
+    [Export] public string[] LootPool  = { "health_potion", "crystal", "leather_piece" };
     [Export] public float    LootChance = 0.65f;
 
-    [Export] public PackedScene  LootScene;   // assign LootItem.tscn in editor / EnemySpawner
     [Export] public EnemyVariant Variant = EnemyVariant.Normal;
 
     [Signal] public delegate void HealthChangedEventHandler(int current, int max);
@@ -58,10 +58,8 @@ public partial class Enemy : CharacterBody3D
     public override void _PhysicsProcess(double delta)
     {
         if (_state == EnemyState.Dead) return;
-
         float dt = (float)delta;
 
-        // Handle freeze
         if (_state == EnemyState.Frozen)
         {
             _freezeTimer -= dt;
@@ -71,7 +69,6 @@ public partial class Enemy : CharacterBody3D
 
         _attackTimer -= dt;
         _stateTimer  -= dt;
-
         UpdateAI();
 
         var velocity = Velocity;
@@ -79,12 +76,8 @@ public partial class Enemy : CharacterBody3D
 
         switch (_state)
         {
-            case EnemyState.Patrol:
-                velocity = Patrol(velocity);
-                break;
-            case EnemyState.Chase:
-                velocity = Chase(velocity);
-                break;
+            case EnemyState.Patrol: velocity = Patrol(velocity); break;
+            case EnemyState.Chase:  velocity = Chase(velocity);  break;
             case EnemyState.Attack:
                 DoAttack();
                 velocity.X = Mathf.Lerp(velocity.X, 0f, 0.3f);
@@ -95,18 +88,14 @@ public partial class Enemy : CharacterBody3D
                 velocity.Z = Mathf.Lerp(velocity.Z, 0f, 0.2f);
                 break;
         }
-
         Velocity = velocity;
         MoveAndSlide();
     }
-
-    // ── AI ────────────────────────────────────────────────────────────
 
     private void UpdateAI()
     {
         if (_player == null) return;
         float dist = GlobalPosition.DistanceTo(_player.GlobalPosition);
-
         if (dist <= AttackRange)
             _state = EnemyState.Attack;
         else if (dist <= DetectRange)
@@ -126,8 +115,7 @@ public partial class Enemy : CharacterBody3D
         if (dir.LengthSquared() < 2f) { _stateTimer = 0f; return vel; }
         dir = dir.Normalized();
         FaceDirection(dir);
-        vel.X = dir.X * MoveSpeed;
-        vel.Z = dir.Z * MoveSpeed;
+        vel.X = dir.X * MoveSpeed; vel.Z = dir.Z * MoveSpeed;
         return vel;
     }
 
@@ -136,8 +124,7 @@ public partial class Enemy : CharacterBody3D
         Vector3 dir = (_player.GlobalPosition - GlobalPosition);
         dir.Y = 0f; dir = dir.Normalized();
         FaceDirection(dir);
-        vel.X = dir.X * ChaseSpeed;
-        vel.Z = dir.Z * ChaseSpeed;
+        vel.X = dir.X * ChaseSpeed; vel.Z = dir.Z * ChaseSpeed;
         return vel;
     }
 
@@ -151,8 +138,7 @@ public partial class Enemy : CharacterBody3D
     private void FaceDirection(Vector3 dir)
     {
         if (dir.LengthSquared() < 0.001f) return;
-        var t = GlobalPosition + dir;
-        t.Y = GlobalPosition.Y;
+        var t = GlobalPosition + dir; t.Y = GlobalPosition.Y;
         LookAt(t, Vector3.Up);
     }
 
@@ -164,18 +150,15 @@ public partial class Enemy : CharacterBody3D
         _health = Mathf.Max(0, _health - amount);
         EmitSignal(SignalName.HealthChanged, _health, MaxHealth);
         UpdateHealthLabel();
-        // Aggro on hit
         if (_state == EnemyState.Patrol || _state == EnemyState.Idle)
             _state = EnemyState.Chase;
         if (_health <= 0) Die();
     }
 
-    /// <summary>Temporarily stops the enemy (Frost Nova etc.).</summary>
     public void ApplyFreeze(float duration)
     {
         if (_state == EnemyState.Dead) return;
-        _state       = EnemyState.Frozen;
-        _freezeTimer = duration;
+        _state = EnemyState.Frozen; _freezeTimer = duration;
     }
 
     private void Die()
@@ -184,69 +167,54 @@ public partial class Enemy : CharacterBody3D
         GetNode<ScoreManager>("/root/ScoreManager")?.Add(ScoreReward);
         _player?.AddExperience(XpReward);
         EmitSignal(SignalName.Died);
-        SpawnLoot();
+        GiveLootToPlayer();
         QueueFree();
     }
 
-    private void SpawnLoot()
+    /// <summary>Adds a random loot item directly into the player's inventory.</summary>
+    private void GiveLootToPlayer()
     {
-        if (LootScene == null || LootPool == null || LootPool.Length == 0) return;
+        if (_player == null || LootPool == null || LootPool.Length == 0) return;
         if (GD.Randf() > LootChance) return;
 
-        string itemId  = LootPool[(int)(GD.Randi() % (uint)LootPool.Length)];
-        var loot       = LootScene.Instantiate<LootItem>();
-        loot.ItemId    = itemId;
-        var dropPos    = GlobalPosition + Vector3.Up * 0.5f;
-        GetTree().CurrentScene.AddChild(loot);
-        loot.GlobalPosition = dropPos;
+        string itemId = LootPool[(int)(GD.Randi() % (uint)LootPool.Length)];
+        if (ItemDatabase.Get(itemId) == null) return;
+
+        _player.Inventory.AddItemById(itemId, 1);
+        GD.Print($"[Loot] +{ItemDatabase.Get(itemId)?.Name}");
     }
 
+    /// <summary>
+    /// Applies variant stats and visual tints from Data/enemies.json.
+    /// Falls back to [Export] field defaults if the variant is not in the config.
+    /// </summary>
     private void ApplyVariant()
     {
-        switch (Variant)
-        {
-            case EnemyVariant.Fast:
-                MaxHealth    = 25;  _health = 25;
-                MoveSpeed    = 5.5f; ChaseSpeed = 10.0f;
-                AttackDamage = 7;
-                XpReward     = 15;  ScoreReward = 8;
-                LootChance   = 0.50f;
-                LootPool     = new[]
-                {
-                    "mana_potion", "iron_dagger", "crystal", "power_ring",
-                    "wooden_shield", "leather_piece", "void_shard", "speed_ring",
-                };
-                Scale        = new Vector3(0.75f, 0.75f, 0.75f);
-                TintBody(new Color(0.08f, 0.18f, 0.85f, 1f));
-                TintGlow(new Color(0.3f,  0.5f,  1.0f, 1f));
-                break;
+        string key = Variant.ToString();   // "Normal", "Fast", "Tank"
+        var data = DataLoader.GetVariant(key);
+        if (data == null) return;
 
-            case EnemyVariant.Tank:
-                MaxHealth      = 150; _health = 150;
-                MoveSpeed      = 2.0f; ChaseSpeed = 3.5f;
-                AttackDamage   = 22;  AttackCooldown = 2.2f;
-                XpReward       = 50;  ScoreReward = 25;
-                LootChance     = 0.85f;
-                LootPool       = new[]
-                {
-                    "void_essence", "iron_armor", "iron_shield", "elixir",
-                    "bone_ring",    "iron_sword",  "bone_fragment", "tower_shield",
-                    "dark_steel_ingot", "essence_crystal", "dragon_scale",
-                };
-                Scale          = new Vector3(1.4f, 1.4f, 1.4f);
-                TintBody(new Color(0.25f, 0.0f, 0.35f, 1f));
-                TintGlow(new Color(0.7f,  0.0f, 0.85f, 1f));
-                break;
+        MaxHealth      = data.MaxHealth;
+        _health        = data.MaxHealth;
+        MoveSpeed      = data.MoveSpeed;
+        ChaseSpeed     = data.ChaseSpeed;
+        AttackDamage   = data.AttackDamage;
+        AttackCooldown = data.AttackCooldown;
+        XpReward       = data.XpReward;
+        ScoreReward    = data.ScoreReward;
+        LootChance     = data.LootChance;
 
-            default: // Normal
-                LootPool = new[]
-                {
-                    "health_potion", "mana_potion", "rusty_sword", "leather_armor",
-                    "crystal", "wooden_shield", "iron_dagger", "iron_ore",
-                    "leather_piece", "bone_fragment", "coal",
-                };
-                break;
-        }
+        if (data.LootPool != null && data.LootPool.Length > 0)
+            LootPool = data.LootPool;
+
+        if (data.Scale != 1.0f)
+            Scale = new Vector3(data.Scale, data.Scale, data.Scale);
+
+        if (data.BodyColor is { Length: >= 4 })
+            TintBody(new Color(data.BodyColor[0], data.BodyColor[1], data.BodyColor[2], data.BodyColor[3]));
+
+        if (data.GlowColor is { Length: >= 4 })
+            TintGlow(new Color(data.GlowColor[0], data.GlowColor[1], data.GlowColor[2], data.GlowColor[3]));
     }
 
     private void TintBody(Color c)

@@ -1,0 +1,27 @@
+[
+  { "result_id": "iron_ingot",       "result_count": 1, "ingredients": { "iron_ore": 3 } },
+  { "result_id": "essence_crystal",  "result_count": 1, "ingredients": { "crystal": 4, "void_essence": 1 } },
+  { "result_id": "enchanted_thread", "result_count": 1, "ingredients": { "leather_piece": 3, "crystal": 2 } },
+  { "result_id": "void_shard",       "result_count": 2, "ingredients": { "void_essence": 3, "crystal": 2 } },
+
+  { "result_id": "health_potion",       "result_count": 2, "ingredients": { "crystal": 2, "leather_piece": 1 } },
+  { "result_id": "mana_potion",         "result_count": 2, "ingredients": { "crystal": 2, "void_essence": 1 } },
+  { "result_id": "big_health_potion",   "result_count": 1, "ingredients": { "health_potion": 3 } },
+  { "result_id": "big_mana_potion",     "result_count": 1, "ingredients": { "mana_potion": 3 } },
+  { "result_id": "rejuvenation_potion", "result_count": 1, "ingredients": { "health_potion": 1, "mana_potion": 1, "crystal": 1 } },
+  { "result_id": "elixir",             "result_count": 1, "ingredients": { "health_potion": 2, "mana_potion": 2 } },
+  { "result_id": "full_restore",       "result_count": 1, "ingredients": { "elixir": 2, "essence_crystal": 1 } },
+  { "result_id": "void_elixir",        "result_count": 1, "ingredients": { "elixir": 1, "void_shard": 2 } },
+
+  { "result_id": "power_ring", "result_count": 1, "ingredients": { "iron_ingot": 2, "crystal": 2 } },
+  { "result_id": "mage_ring",  "result_count": 1, "ingredients": { "crystal": 4, "enchanted_thread": 1 } },
+  { "result_id": "void_ring",  "result_count": 1, "ingredients": { "power_ring": 1, "void_essence": 2 } },
+
+  { "result_id": "amulet_warrior",   "result_count": 1, "ingredients": { "iron_ingot": 2, "bone_fragment": 3, "crystal": 2 } },
+  { "result_id": "amulet_fire",      "result_count": 1, "ingredients": { "crystal": 4, "void_essence": 2, "enchanted_thread": 1 } },
+  { "result_id": "amulet_frost",     "result_count": 1, "ingredients": { "crystal": 3, "void_essence": 2, "essence_crystal": 1 } },
+  { "result_id": "amulet_life",      "result_count": 1, "ingredients": { "leather_piece": 4, "crystal": 2, "void_essence": 1 } },
+  { "result_id": "amulet_blood",     "result_count": 1, "ingredients": { "bone_fragment": 4, "void_essence": 2, "iron_ingot": 1 } },
+  { "result_id": "amulet_lightning", "result_count": 1, "ingredients": { "void_shard": 3, "essence_crystal": 2, "crystal": 2 } },
+  { "result_id": "amulet_void",      "result_count": 1, "ingredients": { "void_essence": 4, "void_shard": 2, "dragon_scale": 1 } }
+]

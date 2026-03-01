@@ -41,8 +41,8 @@ theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 14
-offset_top = -112
-offset_right = 320
+offset_top = -116
+offset_right = 370
 offset_bottom = -14
 
 [node name="HealthRow" type="HBoxContainer" parent="BarsContainer"]
@@ -55,7 +55,7 @@ theme_override_colors/font_color = Color(0.95, 0.2, 0.2, 1)
 vertical_alignment = 1
 
 [node name="HealthBar" type="ProgressBar" parent="BarsContainer/HealthRow"]
-custom_minimum_size = Vector2(180, 20)
+custom_minimum_size = Vector2(260, 24)
 max_value = 100.0
 value = 100.0
 show_percentage = false
@@ -76,7 +76,7 @@ theme_override_colors/font_color = Color(0.3, 0.5, 1.0, 1)
 vertical_alignment = 1
 
 [node name="ManaBar" type="ProgressBar" parent="BarsContainer/ManaRow"]
-custom_minimum_size = Vector2(180, 20)
+custom_minimum_size = Vector2(260, 24)
 max_value = 100.0
 value = 100.0
 show_percentage = false
@@ -104,86 +104,17 @@ theme_override_colors/font_color = Color(1, 1, 1, 0.85)
 horizontal_alignment = 1
 vertical_alignment = 1
 
-; ── SPELL HOTBAR (bottom-center) ─────────────────────────────────────────────
+; ── SPELL HOTBAR (bottom-center) — slots built in code by Hud.cs BuildSpellBar() ──
 [node name="SpellBar" type="HBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -160
-offset_top = -80
-offset_right = 160
-offset_bottom = -12
+offset_left = -235
+offset_top = -84
+offset_right = 235
+offset_bottom = -10
 alignment = 1
-
-[node name="Spell1Panel" type="PanelContainer" parent="SpellBar"]
-custom_minimum_size = Vector2(80, 68)
-
-[node name="VBox1" type="VBoxContainer" parent="SpellBar/Spell1Panel"]
-
-[node name="Icon1" type="Label" parent="SpellBar/Spell1Panel/VBox1"]
-text = "FIRE"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 14
-theme_override_colors/font_color = Color(1, 0.5, 0.1, 1)
-
-[node name="Key1" type="Label" parent="SpellBar/Spell1Panel/VBox1"]
-text = "[Q]"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 18
-theme_override_colors/font_color = Color(1, 0.6, 0.2, 1)
-
-[node name="Cost1" type="Label" parent="SpellBar/Spell1Panel/VBox1"]
-text = "20 MP"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 11
-theme_override_colors/font_color = Color(0.6, 0.8, 1, 0.9)
-
-[node name="Spell2Panel" type="PanelContainer" parent="SpellBar"]
-custom_minimum_size = Vector2(80, 68)
-
-[node name="VBox2" type="VBoxContainer" parent="SpellBar/Spell2Panel"]
-
-[node name="Icon2" type="Label" parent="SpellBar/Spell2Panel/VBox2"]
-text = "HEAL"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 14
-theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
-
-[node name="Key2" type="Label" parent="SpellBar/Spell2Panel/VBox2"]
-text = "[E]"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 18
-theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
-
-[node name="Cost2" type="Label" parent="SpellBar/Spell2Panel/VBox2"]
-text = "30 MP"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 11
-theme_override_colors/font_color = Color(0.6, 0.8, 1, 0.9)
-
-[node name="Spell3Panel" type="PanelContainer" parent="SpellBar"]
-custom_minimum_size = Vector2(80, 68)
-
-[node name="VBox3" type="VBoxContainer" parent="SpellBar/Spell3Panel"]
-
-[node name="Icon3" type="Label" parent="SpellBar/Spell3Panel/VBox3"]
-text = "FROST"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 14
-theme_override_colors/font_color = Color(0.5, 0.8, 1, 1)
-
-[node name="Key3" type="Label" parent="SpellBar/Spell3Panel/VBox3"]
-text = "[R]"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 18
-theme_override_colors/font_color = Color(0.5, 0.8, 1, 1)
-
-[node name="Cost3" type="Label" parent="SpellBar/Spell3Panel/VBox3"]
-text = "40 MP"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 11
-theme_override_colors/font_color = Color(0.6, 0.8, 1, 0.9)
 
 ; ── ATTACK HINT ──────────────────────────────────────────────────────────────
 [node name="AttackHint" type="Label" parent="."]
@@ -192,9 +123,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -100
-offset_top = -106
+offset_top = -112
 offset_right = 100
-offset_bottom = -84
+offset_bottom = -90
 text = "[F] Melee Attack"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 12

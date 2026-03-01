@@ -1,0 +1,50 @@
+{
+  "Normal": {
+    "max_health": 50,
+    "move_speed": 3.5,
+    "chase_speed": 6.5,
+    "attack_damage": 10,
+    "attack_cooldown": 1.5,
+    "xp_reward": 20,
+    "score_reward": 10,
+    "loot_chance": 0.65,
+    "loot_pool": [
+      "health_potion", "mana_potion", "crystal",
+      "leather_piece", "bone_fragment", "iron_ore", "coal", "void_essence"
+    ],
+    "scale": 1.0
+  },
+  "Fast": {
+    "max_health": 25,
+    "move_speed": 5.5,
+    "chase_speed": 10.0,
+    "attack_damage": 7,
+    "attack_cooldown": 1.5,
+    "xp_reward": 15,
+    "score_reward": 8,
+    "loot_chance": 0.50,
+    "loot_pool": [
+      "mana_potion", "crystal", "void_shard", "leather_piece", "void_essence"
+    ],
+    "scale": 0.75,
+    "body_color": [0.08, 0.18, 0.85, 1.0],
+    "glow_color": [0.3, 0.5, 1.0, 1.0]
+  },
+  "Tank": {
+    "max_health": 150,
+    "move_speed": 2.0,
+    "chase_speed": 3.5,
+    "attack_damage": 22,
+    "attack_cooldown": 2.2,
+    "xp_reward": 50,
+    "score_reward": 25,
+    "loot_chance": 0.85,
+    "loot_pool": [
+      "void_essence", "elixir", "bone_fragment", "iron_ingot",
+      "essence_crystal", "dragon_scale", "amulet_warrior", "amulet_blood", "void_shard"
+    ],
+    "scale": 1.4,
+    "body_color": [0.25, 0.0, 0.35, 1.0],
+    "glow_color": [0.7, 0.0, 0.85, 1.0]
+  }
+}
