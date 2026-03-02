@@ -1,5 +1,7 @@
 # VOID QUEST
 
+![VoidQuest Icon](icon.svg)
+
 A 3D action-RPG built with **Godot 4.6 + C#** featuring procedurally generated worlds,
 real-time combat, crafting, inventory management, and LAN multiplayer.
 
