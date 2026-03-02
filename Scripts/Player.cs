@@ -23,7 +23,7 @@ public partial class Player : CharacterBody3D
     [Export] public float MouseSensitivity = 0.003f;
 
     // ── RPG Base Stats ────────────────────────────────────────────────
-    [Export] public int MaxHealth      = 10000;
+    [Export] public int MaxHealth      = 100;
     [Export] public int MaxMana        = 100;
     [Export] public int BaseAttack     = 10;
     [Export] public int BaseDefense    = 0;
